@@ -7,7 +7,8 @@ pipeline {
                 script {
                     echo "Building the C++ project..."
                     sh 'g++ hello.cpp -o hello_exec'
-                    sh 'chmod +x hello_exec'  // Ensure executable permission
+                    sh 'chmod +x hello_exec'  // Give execution permission
+                    sh 'ls -l'  // Debug: Check if the file exists
                 }
             }
         }
@@ -16,7 +17,9 @@ pipeline {
             steps {
                 script {
                     echo "Running the compiled program..."
-                    sh './hello_exec || echo "Execution failed with exit code $?"'  // Debugging step
+                    sh 'pwd'  // Debug: Check current directory
+                    sh 'ls -l'  // Debug: Check if the file is here
+                    sh './hello_exec || echo "Execution failed with exit code $?"'  // Run with error handling
                 }
             }
         }
