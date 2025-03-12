@@ -4,19 +4,17 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                build 'AM153-cpp'
                 script {
                     echo "Building the C++ project..."
-                    sh 'cd main && g++ hello.cpp -o hello_exec'
+                    sh 'g++ hello.cpp -o output'
                 }
             }
         }
 
         stage('Test') {
             steps {
-                script {
-                    echo "Running the compiled program..."
-                    sh './hello_exec'
-                }
+                sh './output'
             }
         }
 
@@ -32,7 +30,7 @@ pipeline {
 
     post {
         failure {
-            echo 'Pipeline failed'
+            error 'Pipeline failed'
         }
     }
 }
