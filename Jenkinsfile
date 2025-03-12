@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     echo "Building the C++ project..."
-                    sh 'g++ hello.cpp -o hello_exec'
+                    sh 'g++ main/hello.cpp -o hello_exec'
                     sh 'chmod +x hello_exec'  // Give execution permission
                     sh 'ls -l'  // Debug: Check if the file exists
                 }
